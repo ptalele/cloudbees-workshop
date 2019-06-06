@@ -1,0 +1,22 @@
+plugins {
+    id "com.gradle.build-scan" version "2.3"
+    id "java"
+}
+
+buildScan {
+    server = "https://enterprise-training.gradle.com"
+    publishAlways()
+
+    tag "lab02"
+
+    def ci = System.getenv("CI")
+    if (ci) {
+        tag "CI"
+    } else {
+        tag "Local"
+    }
+
+    value "Build number", "221"
+    value "Another value", "foo"
+    link "Gradle Enterprise", "https://gradle.com"
+}
